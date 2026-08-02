@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DISCADA • Austin's Original Tacos de Discada | TACO MAFIA</title>
+  <meta name="description" content="Austin's Original Tacos de Discada. MICHELIN Guide 2025 Selection. Cooked over open mesquite fire on a 100lb cowboy plow disc in East Austin, TX." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;800;900&family=Permanent+Marker&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="street-theme">
+
+  <!-- Custom Street Cursor -->
+  <div id="cursor-dot" class="cursor-dot"></div>
+  <div id="cursor-spray" class="cursor-spray"></div>
+
+  <!-- Ambient Sound / Sizzle Audio Elements (Web Audio API Synthesizer fallback built in) -->
+  
+  <!-- Loading Entrance Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader-content">
+      <div class="street-sign-badge">
+        <span class="sign-city">AUSTIN, TEXAS</span>
+        <h1 class="sign-title">DISCADA</h1>
+        <span class="sign-sub">ORIGINAL TACOS DE DISCADA</span>
+      </div>
+      <div class="loader-neon">
+        <span class="neon-text">TACO MAFIA</span>
+        <span class="michelin-star-badge">★ MICHELIN GUIDE 2025 ★</span>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <p class="loader-status" id="loader-status">FIRING UP THE PLOW DISC...</p>
+    </div>
+  </div>
+
+  <!-- Fixed Top Header / Nav -->
+  <header class="main-header" id="main-header">
+    <div class="nav-container">
+      <a href="#entrance" class="brand-logo">
+        <span class="brand-name">DISCADA</span>
+        <span class="brand-tag">TACO MAFIA</span>
+      </a>
+
+      <div class="status-badge-ticker">
+        <span class="pulse-dot"></span>
+        <span class="status-text">TRUCK STATUS: <strong>OPEN & SERVING</strong> @ 1308 E 6TH ST</span>
+      </div>
+
+      <nav class="nav-links" id="nav-menu">
+        <a href="#entrance" class="nav-item active">Entrance</a>
+        <a href="#the-disc" class="nav-item">The Disc</a>
+        <a href="#menu" class="nav-item">Menu</a>
+        <a href="#story" class="nav-item">Story</a>
+        <a href="#gallery" class="nav-item">Gallery</a>
+        <a href="#graffiti" class="nav-item">Graffiti Wall</a>
+        <a href="#location" class="nav-item">Location</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="sound-toggle" class="sound-btn" title="Toggle Festival Sizzle Sound">
+          <span class="sound-icon">🔥</span>
+          <span class="sound-label">SOUND: OFF</span>
+          <div class="sound-bars">
+            <span></span><span></span><span></span>
+          </div>
+        </button>
+
+        <button id="open-order-btn" class="cta-order-btn">
+          <span>ORDER TACOS</span>
+        </button>
+
+        <button id="mobile-menu-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 1: FESTIVAL ENTRANCE (Fullscreen Animated Street Scene) -->
+    <section id="entrance" class="hero-street-section">
+      <!-- Sunset & Festival Lighting Backdrop -->
+      <div class="sky-backdrop">
+        <div class="sun-glow"></div>
+        <div class="sunset-clouds"></div>
+      </div>
+
+      <!-- Hanging Papel Picado Banners -->
+      <div class="papel-picado-wrap">
+        <div class="banner-string string-1">
+          <span class="flag f-orange"></span>
+          <span class="flag f-turquoise"></span>
+          <span class="flag f-red"></span>
+          <span class="flag f-mustard"></span>
+          <span class="flag f-green"></span>
+          <span class="flag f-terracotta"></span>
+          <span class="flag f-turquoise"></span>
+          <span class="flag f-orange"></span>
+        </div>
+      </div>
+
+      <!-- Glowing Festival String Lights -->
+      <div class="festival-lights">
+        <div class="light-bulb b1"></div>
+        <div class="light-bulb b2"></div>
+        <div class="light-bulb b3"></div>
+        <div class="light-bulb b4"></div>
+        <div class="light-bulb b5"></div>
+        <div class="light-bulb b6"></div>
+        <div class="light-bulb b7"></div>
+        <div class="light-bulb b8"></div>
+        <div class="light-bulb b9"></div>
+        <div class="light-bulb b10"></div>
+      </div>
+
+      <!-- Smoke Canvas Particle Overlay -->
+      <canvas id="smokeCanvas" class="smoke-canvas"></canvas>
+
+      <!-- Concrete Street Content & Food Truck -->
+      <div class="street-container">
+        <div class="street-mural-wall">
+          <div class="graffiti-art tag-michelin">MICHELIN 2025</div>
+          <div class="graffiti-art tag-austin">EAST AUSTIN TX</div>
+          <div class="sticker slap-1">TACO MAFIA</div>
+          <div class="sticker slap-2">MESQUITE OAK FIRE</div>
+          <div class="sticker slap-3">100% COWBOY DISC</div>
+        </div>
+
+        <div class="hero-content">
+          <div class="badge-row">
+            <span class="hero-pill michelin-pill">★ MICHELIN GUIDE 2025 SELECTION</span>
+            <span class="hero-pill location-pill">EAST AUSTIN, TEXAS</span>
+          </div>
+
+          <h1 class="hero-title">
+            WELCOME TO THE <br />
+            <span class="text-gradient-mafia">TACO MAFIA</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Austin's Original Tacos de Discada. Eight hours of beef, pork, peppers & secret salsa slow-cooked over open mesquite fire on a 100-pound cowboy plow disc.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#menu" class="btn-primary-mural">
+              <span>EXPLORE FESTIVAL MENU</span>
+            </a>
+            <a href="#location" class="btn-secondary-street">
+              <span>FIND THE TRUCK</span>
+            </a>
+            <button id="vip-pass-btn" class="btn-outline-sticker">
+              <span>🎟️ TACO MAFIA VIP PASS</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Food Truck Visual Element -->
+        <div class="truck-showcase-wrap">
+          <div class="truck-frame">
+            <img src="/src/assets/images/discada_truck_sunset_1785632232144.jpg" alt="Discada Vintage Food Truck at Sunset" class="truck-img" id="hero-truck-img" />
+            <div class="truck-hotspot hs-grill" id="hs-grill" title="Click to Hear & Smell the Grill!">
+              <div class="pulse-ring"></div>
+              <span class="hs-label">🔥 Open Grill Sizzle</span>
+            </div>
+            <div class="truck-hotspot hs-window" id="hs-window" title="Click to See Service Window!">
+              <div class="pulse-ring"></div>
+              <span class="hs-label">🌮 Service Window</span>
+            </div>
+          </div>
+          <div class="truck-caption">
+            <span>DISCADA TRUCK #01 • PARKED DAILY AT 1308 E 6TH ST</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Down Indicator -->
+      <a href="#the-disc" class="scroll-down-indicator" aria-label="Scroll Down">
+        <span class="scroll-arrow">↓</span>
+        <span class="scroll-text">WALK THE STREET</span>
+      </a>
+    </section>
+
+    <!-- SECTION 2: LIVE MARQUEE TICKER -->
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <span>🔥 AUSTIN'S ORIGINAL TACOS DE DISCADA</span>
+        <span>•</span>
+        <span>★ MICHELIN GUIDE 2025 SELECTION</span>
+        <span>•</span>
+        <span>🌮 COOKED ON A 100-LB COWBOY PLOW DISC</span>
+        <span>•</span>
+        <span>⚡ OPEN MESQUITE FIRE</span>
+        <span>•</span>
+        <span>📍 1308 E 6TH ST, EAST AUSTIN</span>
+        <span>•</span>
+        <span>🔥 TACO MAFIA APPROVED</span>
+        <span>•</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span>🔥 AUSTIN'S ORIGINAL TACOS DE DISCADA</span>
+        <span>•</span>
+        <span>★ MICHELIN GUIDE 2025 SELECTION</span>
+        <span>•</span>
+        <span>🌮 COOKED ON A 100-LB COWBOY PLOW DISC</span>
+        <span>•</span>
+        <span>⚡ OPEN MESQUITE FIRE</span>
+        <span>•</span>
+        <span>📍 1308 E 6TH ST, EAST AUSTIN</span>
+        <span>•</span>
+        <span>🔥 TACO MAFIA APPROVED</span>
+        <span>•</span>
+      </div>
+    </div>
+
+    <!-- SECTION 3: MEET DISCADA (THE DISC & COOKING METHOD) -->
+    <section id="the-disc" class="disc-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-eyebrow">// THE COWBOY PLOWSHARE</span>
+          <h2 class="section-title">NOT A GRILL. NOT A PAN. <br /><span class="highlight-orange">THIS IS A DISCADA.</span></h2>
+          <p class="section-desc">
+            Originating in northern Mexico, Discada cooking utilizes a massive tractor plow disc seasoned like cast iron. Mounted over an open fire of Texas oak and mesquite wood, meats cook in their own concentrated juices in concentric thermal zones.
+          </p>
+        </div>
+
+        <!-- Interactive Disc Cooking Process Breakdown -->
+        <div class="disc-interactive-grid">
+          <div class="disc-feature-card">
+            <div class="card-image-wrap">
+              <img src="/src/assets/images/discada_mural_fire_1785632285138.jpg" alt="Discada Cooking on Fire" />
+              <span class="card-badge">THE DISK</span>
+            </div>
+            <div class="card-body">
+              <h3>100-Lb Steel Plow Disc</h3>
+              <p>Heavy steel disc retains massive thermal energy, creating a sizzling moat of flavor where meats fry, braise, and crisp simultaneously.</p>
+            </div>
+          </div>
+
+          <div class="disc-interactive-tabs">
+            <div class="tab-buttons">
+              <button class="disc-tab-btn active" data-tab="tab-meats">1. THE MEATS</button>
+              <button class="disc-tab-btn" data-tab="tab-fire">2. MESQUITE FIRE</button>
+              <button class="disc-tab-btn" data-tab="tab-salsa">3. SECRET SALSA</button>
+              <button class="disc-tab-btn" data-tab="tab-tortilla">4. DOUBLE CORN</button>
+            </div>
+
+            <div class="tab-content-panel">
+              <div id="tab-meats" class="tab-pane active">
+                <div class="pane-icon">🥩</div>
+                <h4>The 5-Meat Secret Blend</h4>
+                <p>Top sirloin steak, pork tenderloin, thick-cut bacon, artisan chorizo, and smoked sausages, diced finely and layered in sequence over 8 hours.</p>
+                <ul class="pane-list">
+                  <li>✔ Sirloin Steak & Pork Tenderloin braised tender</li>
+                  <li>✔ Crisp Bacon & Smokey Chorizo rendered fat</li>
+                  <li>✔ Diced roasted poblano peppers & caramelized onions</li>
+                </ul>
+              </div>
+
+              <div id="tab-fire" class="tab-pane">
+                <div class="pane-icon">🪵</div>
+                <h4>100% Texas Mesquite & Oak</h4>
+                <p>No gas burners. No stoves. Authentic open fire imparts a deep, smoky undertone that permeates every layer of taco filling.</p>
+                <ul class="pane-list">
+                  <li>✔ Seasoned Texas Post Oak & Honey Mesquite</li>
+                  <li>✔ Continuous live embers at 600°F central heat</li>
+                  <li>✔ Natural woodsmoke aroma infused in every bite</li>
+                </ul>
+              </div>
+
+              <div id="tab-salsa" class="tab-pane">
+                <div class="pane-icon">🌶️</div>
+                <h4>Daily Fire-Roasted Salsas</h4>
+                <p>Housemade salsa roja with charred habaneros & serranos, and salsa verde crushed fresh with tomatillos, garlic, and Mexican oregano.</p>
+                <ul class="pane-list">
+                  <li>✔ Roasted daily over live disc coals</li>
+                  <li>✔ Zero preservatives, pure chili flavor</li>
+                  <li>✔ Custom spice level crafted for balance</li>
+                </ul>
+              </div>
+
+              <div id="tab-tortilla" class="tab-pane">
+                <div class="pane-icon">🌽</div>
+                <h4>Double Dipped Corn Tortillas</h4>
+                <p>Local Austin masa tortillas dipped directly into the seasoned discada pan drippings and seared around the outer disc ring.</p>
+                <ul class="pane-list">
+                  <li>✔ Double layer holds juicy discada filling</li>
+                  <li>✔ Crisp edges with savory, rich tortilla aroma</li>
+                  <li>✔ Topped with fresh cilantro, onions & lime</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SIGNATURE TACOS & MENU -->
+    <section id="menu" class="menu-section">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">// THE TACO MAFIA SELECTION</span>
+          <h2 class="section-title">STREET FOOD <span class="text-gradient-chili">PERFECTION</span></h2>
+          <p class="section-desc">
+            Simple, focused, and uncompromising. Every item on our menu is optimized for maximum flavor density.
+          </p>
+        </div>
+
+        <div class="menu-cards-grid">
+          <!-- Card 1 -->
+          <div class="menu-card featured-card">
+            <div class="menu-card-tag">MOST POPULAR</div>
+            <div class="menu-img-holder">
+              <img src="/src/assets/images/discada_taco_plate_1785632271023.jpg" alt="Discada Taco Box" />
+            </div>
+            <div class="menu-card-content">
+              <div class="menu-head">
+                <h3>The Original Discada Taco Basket (5x)</h3>
+                <span class="menu-price">$16.00</span>
+              </div>
+              <p class="menu-desc">
+                Five authentic discada tacos served on double corn tortillas, topped with fresh diced onions, chopped cilantro, house lime wedges, roasted salsa roja & salsa verde.
+              </p>
+              <div class="menu-footer">
+                <span class="spice-level">🔥 🔥 🔥 (Medium Smokey Heat)</span>
+                <button class="card-order-btn" data-item="Discada Taco Basket (5x) - $16.00">ADD TO ORDER</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="menu-card">
+            <div class="menu-img-holder">
+              <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80" alt="El Jefe Discada Bowl" />
+            </div>
+            <div class="menu-card-content">
+              <div class="menu-head">
+                <h3>El Jefe Discada Bowl</h3>
+                <span class="menu-price">$15.50</span>
+              </div>
+              <p class="menu-desc">
+                Generous scoop of mesquite-cooked discada meat served over cilantro lime rice, slow-simmered charro beans, cotija cheese, pickled jalapeños, and avocado crema.
+              </p>
+              <div class="menu-footer">
+                <span class="spice-level">🔥 🔥 (Mild Smokey)</span>
+                <button class="card-order-btn" data-item="El Jefe Discada Bowl - $15.50">ADD TO ORDER</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="menu-card">
+            <div class="menu-img-holder">
+              <img src="https://images.unsplash.com/photo-1582169505937-b9992bd01ed9?auto=format&fit=crop&w=800&q=80" alt="Cowboy Discada Fries" />
+            </div>
+            <div class="menu-card-content">
+              <div class="menu-head">
+                <h3>Cowboy Queso Discada Fries</h3>
+                <span class="menu-price">$14.00</span>
+              </div>
+              <p class="menu-desc">
+                Crispy seasoned potato wedges smothered in house warm smoked queso, loaded with discada meat, crema, diced tomatoes, cilantro & cotija.
+              </p>
+              <div class="menu-footer">
+                <span class="spice-level">🔥 🔥 (Rich & Cheesy)</span>
+                <button class="card-order-btn" data-item="Cowboy Queso Discada Fries - $14.00">ADD TO ORDER</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="menu-card">
+            <div class="menu-img-holder">
+              <img src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?auto=format&fit=crop&w=800&q=80" alt="House Aguas Frescas" />
+            </div>
+            <div class="menu-card-content">
+              <div class="menu-head">
+                <h3>Housemade Aguas Frescas</h3>
+                <span class="menu-price">$5.00</span>
+              </div>
+              <p class="menu-desc">
+                Crafted daily. Choose from: Creamy Mexican Cinnamon Horchata, Chilled Hibiscus Jamaica, or Refreshing Pineapple Jalapeño.
+              </p>
+              <div class="menu-footer">
+                <span class="spice-level">🧊 Crisp & Refreshing</span>
+                <button class="card-order-btn" data-item="Housemade Agua Fresca - $5.00">ADD TO ORDER</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Taco Flavor Customizer -->
+        <div class="taco-customizer-box">
+          <div class="customizer-header">
+            <h3>🌮 INTERACTIVE TACO FLAVOR PROFILER</h3>
+            <p>Customize your ideal Taco Mafia bite and see your real-time taste profile calculation!</p>
+          </div>
+
+          <div class="customizer-controls">
+            <div class="control-group">
+              <label>DISCADA MEAT RATIO: <span id="val-meat">100%</span></label>
+              <input type="range" id="slider-meat" min="50" max="150" value="100" />
+            </div>
+
+            <div class="control-group">
+              <label>FIRE SALSA LEVEL: <span id="val-spice">Medium (Hot)</span></label>
+              <input type="range" id="slider-spice" min="1" max="5" value="3" />
+            </div>
+
+            <div class="control-group">
+              <label>LIME & CILANTRO SQUEEZE: <span id="val-zest">Fresh</span></label>
+              <input type="range" id="slider-zest" min="1" max="5" value="4" />
+            </div>
+          </div>
+
+          <div class="customizer-result">
+            <div class="flavor-meter">
+              <div class="meter-bar">
+                <span class="m-label">Smokiness</span>
+                <div class="bar-fill" id="fill-smoke" style="width: 85%;"></div>
+              </div>
+              <div class="meter-bar">
+                <span class="m-label">Heat & Spice</span>
+                <div class="bar-fill" id="fill-heat" style="width: 60%;"></div>
+              </div>
+              <div class="meter-bar">
+                <span class="m-label">Savory Umami</span>
+                <div class="bar-fill" id="fill-umami" style="width: 95%;"></div>
+              </div>
+            </div>
+            <button id="custom-taco-order-btn" class="btn-primary-mural">ORDER THIS CUSTOM COMBINATION</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: THE TACO MAFIA STORY & MICHELIN 2025 -->
+    <section id="story" class="story-section">
+      <div class="section-container">
+        <div class="story-michelin-banner">
+          <div class="michelin-badge-box">
+            <span class="m-star">★ ★ ★</span>
+            <h3>MICHELIN GUIDE 2025</h3>
+            <p>OFFICIAL SELECTION • AUSTIN TEXAS</p>
+          </div>
+          <div class="michelin-quote">
+            <blockquote>
+              "Discada brings the authentic Mexican plow-disc cooking tradition to East Austin. The depth of flavor in their meat blend, cooked slowly over mesquite coals, is utterly phenomenal."
+            </blockquote>
+            <cite>— MICHELIN Guide Inspector Notes 2025</cite>
+          </div>
+        </div>
+
+        <div class="timeline-wrapper">
+          <h2 class="section-title text-center">THE TACO MAFIA <span class="highlight-turquoise">JOURNEY</span></h2>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-content">
+                <h3>The Backyard Experiment</h3>
+                <p>Two Austin natives restored a 100-lb farm tractor plow disc, built a mesquite fire pit in East Austin, and invited neighbors to sample cowboy discada tacos.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">2020</div>
+              <div class="timeline-content">
+                <h3>The Vintage Truck Launch</h3>
+                <p>Acquired and converted a classic vintage food truck, setting up permanent camp on East 6th Street. Word spread like wildfire across Texas foodies.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-content">
+                <h3>Best Tacos in Austin</h3>
+                <p>Voted "Best Food Truck in Austin" by Austin Chronicle readers and featured on national street food documentaries.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item highlight-item">
+              <div class="timeline-year">2025</div>
+              <div class="timeline-content">
+                <h3>MICHELIN Guide Selection</h3>
+                <p>Honored as an Official Selection in the inaugurative MICHELIN Guide Texas, cementing Discada as a culinary destination.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: STREET GALLERY -->
+    <section id="gallery" class="gallery-section">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">// EAST AUSTIN STREET ATMOSPHERE</span>
+          <h2 class="section-title">STREET <span class="text-gradient-mafia">GALLERY</span></h2>
+          <p class="section-desc">Click any photo to inspect the fire, crowd, and street food culture.</p>
+        </div>
+
+        <div class="gallery-filters">
+          <button class="filter-btn active" data-filter="all">ALL VIBES</button>
+          <button class="filter-btn" data-filter="grill">ON THE GRILL</button>
+          <button class="filter-btn" data-filter="street">EAST AUSTIN</button>
+          <button class="filter-btn" data-filter="tacos">TACOS</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          <div class="gallery-card" data-cat="tacos" data-title="Discada Taco Basket" data-img="/src/assets/images/discada_taco_plate_1785632271023.jpg">
+            <img src="/src/assets/images/discada_taco_plate_1785632271023.jpg" alt="Discada Tacos" />
+            <div class="gallery-overlay"><span>🌮 Discada Taco Basket</span></div>
+          </div>
+
+          <div class="gallery-card" data-cat="grill" data-title="Mesquite Oak Flame Cooking" data-img="/src/assets/images/discada_mural_fire_1785632285138.jpg">
+            <img src="/src/assets/images/discada_mural_fire_1785632285138.jpg" alt="Fire Cooking" />
+            <div class="gallery-overlay"><span>🔥 Live Mesquite Fire</span></div>
+          </div>
+
+          <div class="gallery-card" data-cat="street" data-title="Discada Vintage Truck at Sunset" data-img="/src/assets/images/discada_truck_sunset_1785632232144.jpg">
+            <img src="/src/assets/images/discada_truck_sunset_1785632232144.jpg" alt="Vintage Truck" />
+            <div class="gallery-overlay"><span>🚚 Vintage Truck @ East 6th</span></div>
+          </div>
+
+          <div class="gallery-card" data-cat="street" data-title="East Austin Street Murals" data-img="https://images.unsplash.com/photo-1561055657-b9e0bf0fa360?auto=format&fit=crop&w=800&q=80">
+            <img src="https://images.unsplash.com/photo-1561055657-b9e0bf0fa360?auto=format&fit=crop&w=800&q=80" alt="Austin Graffiti Wall" />
+            <div class="gallery-overlay"><span>🎨 East Austin Mural Culture</span></div>
+          </div>
+
+          <div class="gallery-card" data-cat="grill" data-title="Sizzling Discada Mix" data-img="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="Open Fire Cooking" />
+            <div class="gallery-overlay"><span>🥩 8-Hour Sizzle</span></div>
+          </div>
+
+          <div class="gallery-card" data-cat="tacos" data-title="Handmade Corn Masa" data-img="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=800&q=80">
+            <img src="https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=800&q=80" alt="Fresh Masa Tortillas" />
+            <div class="gallery-overlay"><span>🌽 Fresh Corn Masa</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: INTERACTIVE GRAFFITI WALL -->
+    <section id="graffiti" class="graffiti-wall-section">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">// INTERACTIVE STREET ART</span>
+          <h2 class="section-title">SPRAY YOUR <span class="highlight-mustard">TAG ON THE WALL</span></h2>
+          <p class="section-desc">Pick your spray paint color, draw your graffiti tag, or slap a Taco Mafia sticker directly on the concrete mural!</p>
+        </div>
+
+        <div class="graffiti-canvas-container">
+          <div class="canvas-toolbar">
+            <div class="color-picker-group">
+              <span class="toolbar-label">SPRAY COLOR:</span>
+              <button class="color-dot active" data-color="#E65100" style="background:#E65100;"></button>
+              <button class="color-dot" data-color="#DC2626" style="background:#DC2626;"></button>
+              <button class="color-dot" data-color="#00A896" style="background:#00A896;"></button>
+              <button class="color-dot" data-color="#F59E0B" style="background:#F59E0B;"></button>
+              <button class="color-dot" data-color="#FFFFFF" style="background:#FFFFFF;"></button>
+            </div>
+
+            <div class="brush-size-group">
+              <span class="toolbar-label">SPRAY SIZE:</span>
+              <button class="size-btn active" data-size="12">FINE</button>
+              <button class="size-btn" data-size="28">MEDIUM</button>
+              <button class="size-btn" data-size="45">WIDE</button>
+            </div>
+
+            <div class="sticker-slap-group">
+              <span class="toolbar-label">SLAP STICKER:</span>
+              <button class="sticker-btn" data-sticker="TACO MAFIA">🏷️ TACO MAFIA</button>
+              <button class="sticker-btn" data-sticker="MICHELIN 2025">⭐ MICHELIN 2025</button>
+              <button class="sticker-btn" data-sticker="AUSTIN TX">🌵 AUSTIN TX</button>
+            </div>
+
+            <div class="action-btn-group">
+              <button id="clear-canvas-btn" class="btn-small-dark">CLEAR WALL</button>
+            </div>
+          </div>
+
+          <div class="canvas-wrapper">
+            <canvas id="graffitiCanvas" width="900" height="450"></canvas>
+            <div class="canvas-watermark">AUSTIN STREET MURAL CANVAS</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: LOCATION, LIVE TRACKER & HOURS -->
+    <section id="location" class="location-section">
+      <div class="section-container">
+        <div class="location-grid">
+          <div class="location-info-card">
+            <span class="section-eyebrow">// PERMANENT TRUCK SPOT</span>
+            <h2 class="location-title">EAST AUSTIN <br /><span class="highlight-orange">HEADQUARTERS</span></h2>
+
+            <div class="info-block">
+              <span class="info-icon">📍</span>
+              <div>
+                <strong>ADDRESS</strong>
+                <p>1308 E 6th Street, Austin, TX 78702 <br />(Located in the heart of East Austin)</p>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <span class="info-icon">⏰</span>
+              <div>
+                <strong>OPERATING HOURS</strong>
+                <p>
+                  Tuesday – Thursday: 11:00 AM – 9:00 PM <br />
+                  Friday – Saturday: 11:00 AM – 10:00 PM <br />
+                  Sunday: 11:00 AM – 8:00 PM <br />
+                  Monday: CLOSED (Prepping the Disc)
+                </p>
+              </div>
+            </div>
+
+            <div class="info-block">
+              <span class="info-icon">⚡</span>
+              <div>
+                <strong>LIVE TRUCK STATUS</strong>
+                <div class="status-indicator-box open">
+                  <span class="pulse-dot-large"></span>
+                  <div>
+                    <strong>OPEN & COOKING NOW</strong>
+                    <span class="subtext">Estimated Wait Time: ~10 mins</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="location-buttons">
+              <a href="https://maps.google.com/?q=1308+E+6th+St,+Austin,+TX+78702" target="_blank" rel="noopener noreferrer" class="btn-primary-mural">
+                <span>GET MAP DIRECTIONS</span>
+              </a>
+              <button id="catering-modal-btn" class="btn-secondary-street">
+                <span>EVENT CATERING</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Stylized Interactive Map Card -->
+          <div class="map-visual-card">
+            <div class="map-overlay-content">
+              <div class="map-pin">
+                <span class="pin-icon">🚚</span>
+                <div class="pin-pulse"></div>
+              </div>
+              <div class="map-card-popup">
+                <h4>DISCADA FOOD TRUCK</h4>
+                <p>1308 E 6th St, Austin TX</p>
+                <span class="popup-tag">MICHELIN Guide 2025</span>
+              </div>
+            </div>
+            <div class="map-bg-graphics">
+              <span class="street-label st-1">E 6TH STREET</span>
+              <span class="street-label st-2">ROSEWOOD AVE</span>
+              <span class="street-label st-3">I-35 AUSTIN</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: JOIN THE TACO MAFIA (NEWSLETTER / CLUB) -->
+    <section class="join-mafia-section">
+      <div class="section-container text-center">
+        <div class="mafia-club-box">
+          <span class="section-eyebrow">// SECRET DROPS & SPECIALS</span>
+          <h2 class="club-title">JOIN THE <span class="text-gradient-mafia">TACO MAFIA</span></h2>
+          <p class="club-desc">
+            Get instant text alerts for secret off-menu taco drops, special event pop-ups, and get a <strong>10% OFF Vouchers</strong> instantly!
+          </p>
+
+          <form id="mafia-form" class="mafia-input-form">
+            <input type="text" id="mafia-name" placeholder="Your Street Name / Name" required />
+            <input type="email" id="mafia-email" placeholder="Your Email Address" required />
+            <button type="submit" class="btn-primary-mural">
+              <span>GET VIP PASS</span>
+            </button>
+          </form>
+          <p class="form-privacy">No spam ever. Unsubscribe anytime. Taco honor code.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="street-footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <h3 class="footer-logo">DISCADA</h3>
+        <p>Austin's Original Tacos de Discada. MICHELIN Guide 2025 Selection. Cooked with passion and fire in East Austin, Texas.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">📸 INSTAGRAM</a>
+          <a href="#" aria-label="TikTok">🎵 TIKTOK</a>
+          <a href="#" aria-label="Facebook">🌐 FACEBOOK</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>NAVIGATION</h4>
+        <ul>
+          <li><a href="#entrance">Entrance Street</a></li>
+          <li><a href="#the-disc">The Plow Disc</a></li>
+          <li><a href="#menu">Signature Menu</a></li>
+          <li><a href="#story">Taco Mafia Story</a></li>
+          <li><a href="#gallery">Street Gallery</a></li>
+          <li><a href="#graffiti">Graffiti Wall</a></li>
+          <li><a href="#location">Truck Location</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>EAST AUSTIN SPOT</h4>
+        <p>1308 E 6th Street<br />Austin, Texas 78702</p>
+        <p>Email: hola@discadatacos.com</p>
+        <p>MICHELIN Guide Texas 2025</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 DISCADA LLC. ALL RIGHTS RESERVED. CRAFTED WITH WOODFIRE & SOUL IN AUSTIN, TX.</p>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+
+  <!-- Modal 1: Order Modal -->
+  <div id="order-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" id="close-order-modal">×</button>
+      <div class="modal-header">
+        <h3>🌮 YOUR TACO MAFIA ORDER</h3>
+        <p>Review items & choose pickup time at East 6th Street Truck.</p>
+      </div>
+
+      <div class="modal-body">
+        <div id="cart-items-list" class="cart-list">
+          <p class="empty-cart-msg">Your basket is currently empty. Add signature tacos from the menu!</p>
+        </div>
+
+        <div class="order-summary-box">
+          <div class="summary-row">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Austin Sales Tax (8.25%):</span>
+            <span id="cart-tax">$0.00</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>TOTAL:</span>
+            <span id="cart-total">$0.00</span>
+          </div>
+        </div>
+
+        <div class="pickup-time-select">
+          <label for="pickup-time">PICKUP TIME:</label>
+          <select id="pickup-time">
+            <option value="ASAP (~15 mins)">ASAP (~15 mins)</option>
+            <option value="In 30 Minutes">In 30 Minutes</option>
+            <option value="In 45 Minutes">In 45 Minutes</option>
+            <option value="1 Hour">1 Hour</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button id="checkout-btn" class="btn-primary-mural w-full">PROCEED TO PICKUP CHECKOUT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Lightbox Modal -->
+  <div id="lightbox-modal" class="modal-overlay">
+    <div class="lightbox-card">
+      <button class="modal-close" id="close-lightbox">×</button>
+      <img id="lightbox-img" src="" alt="Street Photography Lightbox" />
+      <div class="lightbox-caption" id="lightbox-caption">Photo Title</div>
+    </div>
+  </div>
+
+  <!-- Modal 3: VIP Pass Coupon Modal -->
+  <div id="vip-modal" class="modal-overlay">
+    <div class="modal-card vip-card-theme">
+      <button class="modal-close" id="close-vip-modal">×</button>
+      <div class="vip-pass-graphic">
+        <span class="vip-stamp">TACO MAFIA VIP</span>
+        <h2>DISCADA PASS</h2>
+        <p class="vip-subtitle">VALID AT 1308 E 6TH ST • EAST AUSTIN</p>
+        <div class="coupon-code-box">
+          <span class="code-label">PROMO CODE (10% OFF):</span>
+          <span class="code-value" id="vip-code-text">MAFIA2025</span>
+          <button id="copy-code-btn" class="btn-small-sticker">COPY CODE</button>
+        </div>
+        <p class="vip-terms">Show this pass at the service window or use code at checkout for 10% off your entire Discada basket!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Catering Modal -->
+  <div id="catering-modal" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" id="close-catering-modal">×</button>
+      <div class="modal-header">
+        <h3>🔥 CATER YOUR EVENT WITH DISCADA</h3>
+        <p>Bring authentic plow disc open-fire taco cooking to your party or wedding!</p>
+      </div>
+      <form id="catering-form" class="catering-form-body">
+        <input type="text" placeholder="Full Name / Company" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="tel" placeholder="Phone Number" required />
+        <input type="date" required />
+        <input type="number" placeholder="Estimated Guest Count (e.g. 50)" required />
+        <textarea placeholder="Event Details & Location" rows="3"></textarea>
+        <button type="submit" class="btn-primary-mural">SUBMIT CATERING REQUEST</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js" defer></script>
+</body>
+</html>
